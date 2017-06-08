@@ -76,3 +76,27 @@
     - conf
     - supervisor
     - supervisord
+
+- name: Change supervisor.service file
+  become: yes
+  replace:
+    path: /lib/systemd/system/supervisor.service
+    regexp: '\/etc\/supervisor\/supervisord.conf'
+    replace: "{{supervisord_conf_file}}"
+  tags:
+    - init
+    - conf
+    - supervisor
+    - supervisord
+
+- name: Update systemctl
+  become: yes
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: "{{supervisord_service_name}}"
+  tags:
+    - init
+    - conf
+    - supervisor
+    - supervisord
