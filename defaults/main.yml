@@ -211,3 +211,5 @@ supervisord_min_procs: 200
 # correctly matched. Recursive includes from included files are not supported.
 supervisord_additional_conf_files:
   - "{{supervisord_additional_conf_dir}}/*.conf"
+
+supervisord_program_files: []

@@ -89,6 +89,13 @@
     - supervisor
     - supervisord
 
+- name: Copy program configurations
+  become: yes
+  file:
+    src: "{{item}}"
+    dest: "{{supervisord_additional_conf_dir}}/{{item | basename}}"
+  with_items: "{{supervisord_program_files}}"
+
 - name: Update systemctl
   become: yes
   systemd:
