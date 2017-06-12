@@ -77,6 +77,11 @@
     - supervisor
     - supervisord
 
+- name: Check supervisor.service file
+  stat: 
+    path: /lib/systemd/system/supervisor.service
+  register: supervisor_service_exists
+
 - name: Change supervisor.service file
   become: yes
   replace:
