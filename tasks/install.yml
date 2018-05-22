@@ -29,3 +29,12 @@
     - deps
     - supervisor
     - supervisord
+
+- name: Mark Supervisord as hold
+  become: yes
+  when: ansible_os_family == 'Debian'
+  shell: apt-mark hold supervisor
+  tags:
+    - deps
+    - supervisor
+    - supervisord
